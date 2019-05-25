@@ -1,5 +1,6 @@
 
 const toList = document.querySelector('#cafe-list');
+const form = document.querySelector('#add-cafe-form');
 
 function renderList(doc) {
     li = document.createElement('li');
@@ -20,4 +21,14 @@ db.collection('toDOs').get().then((snapshot) => {
     snapshot.docs.forEach((doc) => {
         renderList(doc);
     });
+});
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    db.collection('toDOs').add({
+        work: form.work.value,
+        date: form.date.value
+    });
+    form.work.value = '';
+    form.date.value = '';
 });
