@@ -25,7 +25,7 @@ function renderList(doc) {
     toList.appendChild(li);
 }
 
-db.collection('toDOs').get().then((snapshot) => {
+db.collection('toDOs').where('work','==','OS').orderBy('date').get().then((snapshot) => {
     // console.log(snapshot.docs);
     snapshot.docs.forEach((doc) => {
         renderList(doc);
