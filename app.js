@@ -43,10 +43,16 @@ db.collection('toDOs').orderBy('date').onSnapshot((snapshot) => {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    db.collection('toDOs').add({
-        work: form.work.value,
-        date: form.date.value
-    });
-    form.work.value = '';
-    form.date.value = '';
+    if(form.work.value == '' || form.date.value == '') {
+        alert('Invalid input');
+    }
+    else {
+        db.collection('toDOs').add({
+            work: form.work.value,
+            date: form.date.value
+        });
+        form.work.value = '';
+        form.date.value = '';
+    }
+    
 });
