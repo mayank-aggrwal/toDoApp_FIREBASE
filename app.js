@@ -25,10 +25,19 @@ function renderList(doc) {
     toList.appendChild(li);
 }
 
-db.collection('toDOs').where('work','==','OS').orderBy('date').get().then((snapshot) => {
-    // console.log(snapshot.docs);
-    snapshot.docs.forEach((doc) => {
-        renderList(doc);
+// db.collection('toDOs').where('work','==','OS').orderBy('date').get().then((snapshot) => {
+db.collection('toDOs').orderBy('date').onSnapshot((snapshot) => {
+    let changes = snapshot.docChanges();
+    console.log(changes);
+
+    changes.forEach((change) => {
+        if(change.type == 'added') {
+            renderList(change.doc);
+        }
+        else if(change.type == 'removed') {
+            let li = document.querySelector('[data-id='+change.doc.id+']');
+            toList.removeChild(li);
+        }
     });
 });
 
