@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-firestore.js"></script>
     <title>TO DO List</title>
 </head>
 
@@ -15,6 +18,25 @@
         <form id="add-cafe-form"></form>
         <ul id="cafe-list"></ul>
     </div>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyBu7GnGRp7l2dMu-FNdvXQF6xCj-s1-NYk",
+          authDomain: "todolist-6d416.firebaseapp.com",
+          databaseURL: "https://todolist-6d416.firebaseio.com",
+          projectId: "todolist-6d416",
+          storageBucket: "todolist-6d416.appspot.com",
+          messagingSenderId: "499088387911",
+          appId: "1:499088387911:web:405a496c83ad7f92"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        db.settings({timestampsInSnapshots : true});
+      </script>
+
+      <script src="app.js"></script>
 
 <body>
     
